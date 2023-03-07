@@ -1,0 +1,15 @@
+import pymongo
+client=pymongo.MongoClient("mongodb://localhost:27017")    #connection string connected with mongodb database.
+print(client)
+
+#select database 
+db=client['finalwork']      #existing mongodb database.
+#selecting the collection or table.
+coll_tab=db['storedata']    #existing mongodb collection.
+# print(dir(coll_tab))
+
+data=coll_tab.find({'POSTCODE': {"$regex":"^B"}})   #$regex search specific string in the collections.
+for i in data:
+    print(i)     # Display string B related data.
+
+client.close()
